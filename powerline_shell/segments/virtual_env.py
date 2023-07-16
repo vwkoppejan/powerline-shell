@@ -8,12 +8,12 @@ class Segment(BasicSegment):
             or os.getenv('CONDA_ENV_PATH') \
             or os.getenv('CONDA_DEFAULT_ENV')
         if os.getenv('VIRTUAL_ENV') \
-            and os.path.basename(env) == '.venv':
+            and os.path.basename(env) == '.virtual_env':
             env = os.path.basename(os.path.dirname(env))
         if not env:
             return
 
-        if self.powerline.segment_conf("venv", "poetry-suffix") == False:
+        if self.powerline.segment_conf("virtual_env", "poetry-suffix") == False:
             env_name = "-".join(os.path.basename(env).split('-')[0:-2 ])
         else:
             env_name = os.path.basename(env)
