@@ -13,10 +13,10 @@ class Segment(BasicSegment):
         if not env:
             return
 
+        env_name = os.path.basename(env)
         if self.powerline.segment_conf("virtual_env", "poetry-suffix") == False:
-            env_name = "-".join(os.path.basename(env).split('-')[0:-2 ])
-        else:
-            env_name = os.path.basename(env)
+            if 'poetry' in os.path.abspath(env):
+                env_name = "-".join(env_name.split('-')[0:-2 ])
 
         bg = self.powerline.theme.VIRTUAL_ENV_BG
         fg = self.powerline.theme.VIRTUAL_ENV_FG
